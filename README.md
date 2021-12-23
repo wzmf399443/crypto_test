@@ -2,7 +2,7 @@
 
 It's a simple demo for web UI testing and app API testing
 
-## Setup your development environment
+## Setup the development environment
 
 ### Install  pipenv
 
