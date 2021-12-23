@@ -1,7 +1,11 @@
 *** Keywords ***
+Go To Markets Page
+    Go To    https://crypto.com/exchange/markets
+    Wait Until Element Is Visible    ${MARKETS_PAGE_MARKET_TITLE_TEXT}
+
 Open Default Browser
     [Documentation]    Open default browser
-    [Arguments]    ${browser_url}=https://crypto.com/exchange/markets    ${browser_name}=chrome
+    [Arguments]    ${browser_url}=https://crypto.com/exchange/    ${browser_name}=chrome
     Run Keyword IF    '${BROWSER_PORT}'=='None'    Open Local Browser    ${browserURL}    ${browserName}
     ...    ELSE    Open Docker Browser    ${browserURL}    ${browserName}
     Set Window Size    ${WINDOW_WEIGHT}    ${WINDOW_HEIGHT}
@@ -17,5 +21,17 @@ Open Docker Browser
 Open Local Browser
     [Arguments]    ${browserURL}    ${browserName}=${None}
     Open Browser    ${browserURL}    ${DEFAULT_BROWSER}    alias=${browserName}
+
 # -------- Element --------
+Clean And Input The Text
+    [Arguments]    ${element}    ${text}
+    Wait Until Element Is Visible    ${element}
+    Clear Element Text    ${element}
+    Input Text    ${element}    ${text}
+
+Click Specific Element
+    [Arguments]    ${element}
+    Wait Until Element Is Visible    ${element}
+    Click Element    ${element}
+
 # -------- Verify --------
