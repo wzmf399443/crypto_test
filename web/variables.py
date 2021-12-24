@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-TIMEOUT = os.getenv("TIMEOUT", "300")
+TIMEOUT = os.getenv("TIMEOUT", "30")
 
 # Browser
 BROWSER_PORT = os.getenv('BROWSER_PORT', "4444")
