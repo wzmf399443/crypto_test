@@ -13,7 +13,11 @@ Test Timeout    ${TIMEOUT}
 *** Test Cases ***
 Check the text and the elements is expected in symbol info
     [Template]    Check The Element And The Text Is Expected
-    ${TRADE_SPOT_TOGGLE_TEXT}    XTZ/CRO
+    ${TRADE_SPOT_SYMBOL_INFO_DROPDOWN_TEXT}    XTZ/CRO
+    ${TRADE_SPOT_SYMBOL_INFO_TITLE_TEXT_CHANGE}    Change
+    ${TRADE_SPOT_SYMBOL_INFO_TITLE_TEXT_HIGH}    High
+    ${TRADE_SPOT_SYMBOL_INFO_TITLE_TEXT_LOW}    Low
+    ${TRADE_SPOT_SYMBOL_INFO_TITLE_TEXT_24H}    24H Vol
 
 *** Keywords ***
 Suite Setup
@@ -29,8 +33,7 @@ Test Setup
     Element Text Should Be    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_INSTRUMENT_NAME_BASE}    XTZ
     Element Text Should Be    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_INSTRUMENT_NAME_QUOTE}    /CRO
     Click Specific Element    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_TRADE_BUTTON}
-    Wait Until Element Is Visible    ${TRADE_SPOT_TOGGLE_TEXT}
-    Capture Page Screenshot
+    Wait Until Element Is Visible    ${TRADE_SPOT_SYMBOL_INFO_ITEM_LAST_PRICE_TEXT}
 
 Check The Element And The Text Is Expected
     [Arguments]    ${location}    ${text}

@@ -1,1 +1,6 @@
-TRADE_SPOT_TOGGLE_TEXT = '//*[@id="app"]//div[@class="toggle"]'
+TRADE_SPOT_SYMBOL_INFO_DROPDOWN_TEXT = '//*[@id="app"]//div[contains(@class,"symbol-dropdown")]//div[@class="toggle"]'
+TRADE_SPOT_SYMBOL_INFO_ITEM_LAST_PRICE_TEXT = '//*[@id="app"]//div[contains(@class,"last-price")]//div[contains(@class,"item-value")]'
+TRADE_SPOT_SYMBOL_INFO_TITLE_TEXT_CHANGE = '//*[@id="app"]//div[@class="current-symbol"]/div/div[2]/div[@class="item-title"]'
+TRADE_SPOT_SYMBOL_INFO_TITLE_TEXT_HIGH = '//*[@id="app"]//div[@class="current-symbol"]/div/div[3]/div[@class="item-title"]'
+TRADE_SPOT_SYMBOL_INFO_TITLE_TEXT_LOW = '//*[@id="app"]//div[@class="current-symbol"]/div/div[4]/div[@class="item-title"]'
+TRADE_SPOT_SYMBOL_INFO_TITLE_TEXT_24H = '//*[@id="app"]//div[@class="current-symbol"]/div/div[5]/div[@class="item-title"]'
