@@ -17,6 +17,7 @@ TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK = '//*[@id="app"]//div[@class="trade-b
 TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_TYPE = f'{TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK}//span[@class="trade-type"]'
 TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_TYPE_AMOUNT = f'{TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK}//span[@class="amount"]'
 TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT = f'{TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK}//div[@class="trade-input"]/div[@class="input-item"]'
+TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK_SUBMIT_BUTTON = f'{TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK}//button[contains(@class,"trade-submit")]'
 
 # Order Book
 TRADE_SPOT_ORDER_BOOK_TITLE_TEXT = '//*[@id="app"]//div[@class="order-book"]//div[@class="title"]'
