@@ -4,6 +4,12 @@ Check The Defaut Price Is Not Empty
     ${price} =    Get Value    (${TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT})[1]/input
     Should Not Be Empty    ${price}
 
+Verify The Value Are Order By DESC
+    [Arguments]    ${value_list}
+    ${origin_list} =    Copy List    ${value_list}
+    Sort List    ${value_list}
+    Lists Should Be Equal    ${origin_list}    ${value_list[::-1]}
+
 Verify Buy And Sell Tab Is Worked In Trade Form
     [Documentation]    Check the tab works by checking trade type and amount
     [Arguments]    ${tab_type}    ${base_coin}    ${quote_coin}
