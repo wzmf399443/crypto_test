@@ -9,6 +9,15 @@ Select Specific Decimal Rule In Order Book
     Click Specific Element    ${TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN}
     Click Specific Element    ${TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN_LIST}/li[text()="${decimal_rule}"]
 
+Enable Or Disable Favorite Button
+    [Arguments]    ${button_type}
+    ${button_status} =    Get Element Attribute    ${TRADE_SPOT_SYMBOL_INFO_FAVORITE_BUTTON}    class
+    ${button_status} =    Split String    ${button_status}
+    ${button_status} =    Set Variable If    'on' in ${button_status}    ${true}    ${false}
+    IF    '${button_status}' != '${button_type}'
+        Click Specific Element    ${TRADE_SPOT_SYMBOL_INFO_FAVORITE_BUTTON}
+    END
+
 # -------- Verify --------
 Check The Defaut Price Is Not Empty
     [Documentation]     Check the defaut price in trade form is displayed

@@ -5,6 +5,7 @@ Go To Markets Page
 
 Navigate To Specific Coin Trade Spot From Markets Page
     [Arguments]    ${base_coin}    ${quote_coin}    
+    Scroll Element Into View    ${MARKETS_PAGE_MARKET_TRADE_LIST_${quote_coin}_TITLE_TEXT}
     Click Specific Element    ${MARKETS_PAGE_MARKET_TRADE_LIST_${quote_coin}_TITLE_TEXT}
     Clean And Input The Text    ${MARKETS_PAGE_MARKET_TRADE_LIST_SEARCH_INPUT}    ${base_coin}
     Element Text Should Be    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_INSTRUMENT_NAME_BASE}    ${base_coin}
