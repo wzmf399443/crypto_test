@@ -6,6 +6,7 @@ Force Tags    web    market    cro
 Suite Setup       Suite Setup
 Suite Teardown    Suite Teardown
 Test Setup    Test Setup
+Test Teardown    Test Teardown
 Test Timeout    ${TIMEOUT}
 
 *** Variables ***
@@ -41,12 +42,17 @@ Check the count order book defaut list is expected
     ${buy_count} =    Get Element Count    ${TRADE_SPOT_ORDER_BOOK_BUY_LIST}/div
     ${last_price} =    Get Text    ${TRADE_SPOT_SYMBOL_INFO_ITEM_LAST_PRICE_TEXT}
     @{last_price} =    Split String    ${last_price}
-    ${current_price} =    Get Text    ${TRADE_SPOT_ORDER_BOOK_ASK_LIST_CURRENT_PRICE}
+    ${current_price} =    Get Text    ${TRADE_SPOT_ORDER_BOOK_CURRENT_PRICE}
     Should Be Equal As Strings    ${ask_count}    ${order_book_each_list_default_length}
     Should Be Equal As Strings    ${buy_count}    ${order_book_each_list_default_length}
     Should Be Equal As Strings    ${buy_count}    ${ask_count}
     Should Be Equal As Strings    ${last_price[0]}    ${current_price}
-    
+
+Check the value decimal is expected in order book
+    [Template]    Check The Order Book Item Should Follow The Decimal Rule
+    0.1
+    0.01
+    0.001
     
 *** Keywords ***
 Suite Setup
@@ -58,6 +64,9 @@ Suite Teardown
 Test Setup
     Go To Markets Page
     Navigate To Specific Coin Trade Spot From Markets Page    ${base_coin}    ${quote_coin}
+
+Test Teardown
+    Run Keyword If Test Failed    Capture Page Screenshot
 
 Check The Element And The Text Is Expected
     [Arguments]    ${location}    ${text}
@@ -73,17 +82,27 @@ Check The Input And Auto Fill In Limit Is Worked
         Clean And Input The Text    (${TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT})[2]/input    ${amount}
         ${total_text} =    Get Value    (${TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT})[3]/input
         ${expected_total} =    Evaluate    f"{float(${price}) * ${amount}:.4f}"
-        Capture Page Screenshot
         Should Be Equal As Strings    ${total_text}    ${expected_total}[:-1]
     ELSE IF    '${total}' != '${None}'
         Clean And Input The Text    (${TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT})[3]/input    ${total}
         ${amount_text} =    Get Value    (${TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT})[2]/input
         ${expected_amount} =    Evaluate    f"{${total} / float(${price}):.3f}"
-        Capture Page Screenshot
         Should Be Equal As Strings    ${amount_text}    ${expected_amount}[:-1]
     END
 
 Check The Order Book Item Should Follow The Decimal Rule
-    ${price} =    Get Text    (${TRADE_SPOT_ORDER_BOOK_ASK_LIST_PRICE_TEXT})[1]
-    ${expected_price} =    Evaluate    f'{${price}:.3f}'
-    Should Be Equal As Strings    ${price}    ${expected_price}
+    [Arguments]    ${decimal_rule}
+    ${decimal_map} =    Create Dictionary    0.1=1    0.01=2    0.001=3
+    Click Specific Element    ${TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN}
+    Click Specific Element    ${TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN_LIST}/li[text()="${decimal_rule}"]
+    ${ask_items} =    Get WebElements    ${TRADE_SPOT_ORDER_BOOK_ASK_LIST_PRICE_TEXT}
+    ${buy_items} =    Get WebElements    ${TRADE_SPOT_ORDER_BOOK_BUY_LIST_PRICE_TEXT}
+    ${item_list} =    Combine Lists    ${ask_items}    ${buy_items}
+    ${value_list} =    Create List
+    FOR    ${item}    IN    @{item_list}
+        ${price} =    Get Text    ${item}
+        Append To List    ${value_list}    ${price}
+        ${expected_price} =    Evaluate    f'{${price}:.${decimal_map["${decimal_rule}"]}f}'
+        Should Be Equal As Strings    ${price}    ${expected_price}
+    END
+    Verify The Value Are Order By DESC    ${value_list}

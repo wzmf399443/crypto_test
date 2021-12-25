@@ -17,7 +17,10 @@ TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT = f'{TRADE_SPOT_TRADE_FORM_DISPLAY
 
 # Order Book
 TRADE_SPOT_ORDER_BOOK_TITLE_TEXT = '//*[@id="app"]//div[@class="order-book"]//div[@class="title"]'
-TRADE_SPOT_ORDER_BOOK_ASK_LIST_CURRENT_PRICE = '//*[@id="app"]//div[@class="order-book"]//div[@class="current-price"]/span'
+TRADE_SPOT_ORDER_BOOK_CURRENT_PRICE = '//*[@id="app"]//div[@class="order-book"]//div[@class="current-price"]/span'
 TRADE_SPOT_ORDER_BOOK_ASK_LIST = '//*[@id="app"]//div[@class="order-book"]//div[@class="list-content" and .//div[contains(@class,"color-ask-price")]]'
 TRADE_SPOT_ORDER_BOOK_BUY_LIST = '//*[@id="app"]//div[@class="order-book"]//div[@class="list-content" and .//div[contains(@class,"color-buy-price")]]'
 TRADE_SPOT_ORDER_BOOK_ASK_LIST_PRICE_TEXT = f'{TRADE_SPOT_ORDER_BOOK_ASK_LIST}//div[@class="price color-ask-price"]'
+TRADE_SPOT_ORDER_BOOK_BUY_LIST_PRICE_TEXT = f'{TRADE_SPOT_ORDER_BOOK_BUY_LIST}//div[@class="price color-buy-price"]'
+TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN = '//*[@id="app"]//div[@class="order-book"]//div[@class="e-dropdown"]'
+TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN_LIST = '//*[@id="app"]//div[@class="order-book"]//div[@class="e-dropdown"]//ul'
