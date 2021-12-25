@@ -33,7 +33,6 @@ Open Local Browser
     [Arguments]    ${browserURL}    ${browserName}=${None}
     Open Browser    ${browserURL}    ${DEFAULT_BROWSER}    alias=${browserName}
 
-# -------- Element --------
 Clean And Input The Text
     [Arguments]    ${element}    ${text}
     Wait Until Element Is Visible    ${element}

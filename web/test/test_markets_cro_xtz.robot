@@ -36,7 +36,14 @@ Check input of trade block limit is expected in trade form
     total=${30}
     total=${20.77}
 
-Check the count order book defaut list is expected
+Check the popup message is expected in each order type
+    [Template]    Check Each Popup Content Is Expected
+    Stop Loss
+    Stop Limit
+    OCO Limit
+    OCO Market
+
+Check the count of order book defaut list is expected
     Check The Element And The Text Is Expected    ${TRADE_SPOT_ORDER_BOOK_TITLE_TEXT}    Order Book
     ${ask_count} =    Get Element Count    ${TRADE_SPOT_ORDER_BOOK_ASK_LIST}/div
     ${buy_count} =    Get Element Count    ${TRADE_SPOT_ORDER_BOOK_BUY_LIST}/div
@@ -93,8 +100,7 @@ Check The Input And Auto Fill In Limit Is Worked
 Check The Order Book Item Should Follow The Decimal Rule
     [Arguments]    ${decimal_rule}
     ${decimal_map} =    Create Dictionary    0.1=1    0.01=2    0.001=3
-    Click Specific Element    ${TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN}
-    Click Specific Element    ${TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN_LIST}/li[text()="${decimal_rule}"]
+    Select Specific Decimal Rule In Order Book    ${decimal_rule}
     ${ask_items} =    Get WebElements    ${TRADE_SPOT_ORDER_BOOK_ASK_LIST_PRICE_TEXT}
     ${buy_items} =    Get WebElements    ${TRADE_SPOT_ORDER_BOOK_BUY_LIST_PRICE_TEXT}
     ${item_list} =    Combine Lists    ${ask_items}    ${buy_items}
@@ -106,3 +112,12 @@ Check The Order Book Item Should Follow The Decimal Rule
         Should Be Equal As Strings    ${price}    ${expected_price}
     END
     Verify The Value Are Order By DESC    ${value_list}
+
+Check Each Popup Content Is Expected
+    [Arguments]    ${order_type}
+    Click Order Type Dropdown And Select Specific Type    ${order_type}
+    Click Specific Element    ${TRADE_SPOT_TRADE_FORM_ORDER_TYPE_TIP_ICON}
+    Check The Element And The Text Is Expected    ${TRADE_SPOT_POPUP_MESSAGE_TITLE}    ${order_type}
+    Check The Element And The Text Is Expected    ${TRADE_SPOT_POPUP_MESSAGE_CONTENT}    ${order_type_popup_message["${order_type}"]}
+    Click Specific Element    ${TRADE_SPOT_POPUP_CANCEL_BUTTON}
+    Wait Until Keyword Succeeds    5s    1s    Element Should Not Be Visible    ${TRADE_SPOT_POPUP_MESSAGE_TITLE}

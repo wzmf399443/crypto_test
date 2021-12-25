@@ -10,6 +10,9 @@ TRADE_SPOT_SYMBOL_INFO_TITLE_TEXT_24H = '//*[@id="app"]//div[@class="current-sym
 TRADE_SPOT_TRADE_FORM_BUTTON_TAB_BUY = '//*[@id="app"]//div[contains(@class,"trading-form")]//div[@class="button-tabs"]/div[text()=" Buy "]'
 TRADE_SPOT_TRADE_FORM_BUTTON_TAB_SELL = '//*[@id="app"]//div[contains(@class,"trading-form")]//div[@class="button-tabs"]/div[text()=" Sell "]'
 TRADE_SPOT_TRADE_FORM_ORDER_TYPE_LIMIT = '//*[@id="app"]//div[@class="spot-tabs"]//div[@class="order-type-tabs"]//div[text()="Limit"]'
+TRADE_SPOT_TRADE_FORM_ORDER_TYPE_TIP_ICON = '//*[@id="app"]//div[@class="spot-tabs"]//div[@class="order-type-tabs"]//div[@class="advanced-dropdown-trigger"]//*[@class="e-icon e-icon-info"]'
+TRADE_SPOT_TRADE_FORM_ORDER_TYPE_DROPDOWN_ICON = '//*[@id="app"]//div[@class="spot-tabs"]//div[@class="order-type-tabs"]//div[@class="advanced-dropdown-trigger"]//*[@class="e-icon e-icon-accordion"]'
+TRADE_SPOT_TRADE_FORM_ORDER_TYPE_DROPDOWN_LIST = '//*[@id="app"]//div[@class="spot-tabs"]//div[@class="order-type-tabs"]//div[contains(@class,"e-dropdown-content")]'
 TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK = '//*[@id="app"]//div[@class="trade-block" and not(contains(@style,"display: none"))]'
 TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_TYPE = f'{TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK}//span[@class="trade-type"]'
 TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_TYPE_AMOUNT = f'{TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK}//span[@class="amount"]'
@@ -24,3 +27,8 @@ TRADE_SPOT_ORDER_BOOK_ASK_LIST_PRICE_TEXT = f'{TRADE_SPOT_ORDER_BOOK_ASK_LIST}//
 TRADE_SPOT_ORDER_BOOK_BUY_LIST_PRICE_TEXT = f'{TRADE_SPOT_ORDER_BOOK_BUY_LIST}//div[@class="price color-buy-price"]'
 TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN = '//*[@id="app"]//div[@class="order-book"]//div[@class="e-dropdown"]'
 TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN_LIST = '//*[@id="app"]//div[@class="order-book"]//div[@class="e-dropdown"]//ul'
+
+# Popup
+TRADE_SPOT_POPUP_MESSAGE_TITLE = '//div[contains(@class,"e-modal")]//div[@class="d-title"]'
+TRADE_SPOT_POPUP_MESSAGE_CONTENT = '//div[contains(@class,"e-modal")]//div[@class="d-desc"]'
+TRADE_SPOT_POPUP_CANCEL_BUTTON = '//div[contains(@class,"e-modal")]//div//button'

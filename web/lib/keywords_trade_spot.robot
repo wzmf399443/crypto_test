@@ -1,4 +1,15 @@
 *** Keywords ***
+Click Order Type Dropdown And Select Specific Type
+    [Arguments]    ${order_type}
+    Click Specific Element    ${TRADE_SPOT_TRADE_FORM_ORDER_TYPE_DROPDOWN_ICON}
+    Click Specific Element    ${TRADE_SPOT_TRADE_FORM_ORDER_TYPE_DROPDOWN_LIST}//button[text()="${order_type}"]
+
+Select Specific Decimal Rule In Order Book
+    [Arguments]    ${decimal_rule}
+    Click Specific Element    ${TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN}
+    Click Specific Element    ${TRADE_SPOT_ORDER_BOOK_DECIMAL_POINT_DROPDOWN_LIST}/li[text()="${decimal_rule}"]
+
+# -------- Verify --------
 Check The Defaut Price Is Not Empty
     [Documentation]     Check the defaut price in trade form is displayed
     ${price} =    Get Value    (${TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT})[1]/input
