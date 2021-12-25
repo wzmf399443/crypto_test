@@ -11,6 +11,7 @@ Test Timeout    ${TIMEOUT}
 *** Variables ***
 ${base_coin}    XTZ
 ${quote_coin}    CRO
+${order_book_each_list_default_length}    ${9}
 
 *** Test Cases ***
 Check the text and the elements is expected in symbol info
@@ -33,6 +34,19 @@ Check input of trade block limit is expected in trade form
     ${2.5}
     total=${30}
     total=${20.77}
+
+Check the count order book defaut list is expected
+    Check The Element And The Text Is Expected    ${TRADE_SPOT_ORDER_BOOK_TITLE_TEXT}    Order Book
+    ${ask_count} =    Get Element Count    ${TRADE_SPOT_ORDER_BOOK_ASK_LIST}/div
+    ${buy_count} =    Get Element Count    ${TRADE_SPOT_ORDER_BOOK_BUY_LIST}/div
+    ${last_price} =    Get Text    ${TRADE_SPOT_SYMBOL_INFO_ITEM_LAST_PRICE_TEXT}
+    @{last_price} =    Split String    ${last_price}
+    ${current_price} =    Get Text    ${TRADE_SPOT_ORDER_BOOK_ASK_LIST_CURRENT_PRICE}
+    Should Be Equal As Strings    ${ask_count}    ${order_book_each_list_default_length}
+    Should Be Equal As Strings    ${buy_count}    ${order_book_each_list_default_length}
+    Should Be Equal As Strings    ${buy_count}    ${ask_count}
+    Should Be Equal As Strings    ${last_price[0]}    ${current_price}
+    
     
 *** Keywords ***
 Suite Setup
@@ -68,3 +82,8 @@ Check The Input And Auto Fill In Limit Is Worked
         Capture Page Screenshot
         Should Be Equal As Strings    ${amount_text}    ${expected_amount}[:-1]
     END
+
+Check The Order Book Item Should Follow The Decimal Rule
+    ${price} =    Get Text    (${TRADE_SPOT_ORDER_BOOK_ASK_LIST_PRICE_TEXT})[1]
+    ${expected_price} =    Evaluate    f'{${price}:.3f}'
+    Should Be Equal As Strings    ${price}    ${expected_price}
