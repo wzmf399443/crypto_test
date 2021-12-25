@@ -60,21 +60,14 @@ Check the value decimal is expected in order book
     0.1
     0.01
     0.001
-    
+
+Check submit button will direct to login page when user not login
+    Click Specific Element    ${TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK_SUBMIT_BUTTON}
+    Check The Element And The Text Is Expected    ${LOGIN_PAGE_LOGIN_BUTTON}    Sign in
+    Title Should Be    Crypto.com OAuth
+    Location Should Be    https://auth.crypto.com/users/sign_in
+
 *** Keywords ***
-Suite Setup
-    Open Default Browser
-
-Suite Teardown
-    Close All Browsers
-
-Test Setup
-    Go To Markets Page
-    Navigate To Specific Coin Trade Spot From Markets Page    ${base_coin}    ${quote_coin}
-
-Test Teardown
-    Run Keyword If Test Failed    Capture Page Screenshot
-
 Check The Element And The Text Is Expected
     [Arguments]    ${location}    ${text}
     Wait Until Element Is Visible    ${location}
@@ -121,3 +114,16 @@ Check Each Popup Content Is Expected
     Check The Element And The Text Is Expected    ${TRADE_SPOT_POPUP_MESSAGE_CONTENT}    ${order_type_popup_message["${order_type}"]}
     Click Specific Element    ${TRADE_SPOT_POPUP_CANCEL_BUTTON}
     Wait Until Keyword Succeeds    5s    1s    Element Should Not Be Visible    ${TRADE_SPOT_POPUP_MESSAGE_TITLE}
+
+Suite Setup
+    Open Default Browser
+
+Suite Teardown
+    Close All Browsers
+
+Test Setup
+    Go To Markets Page
+    Navigate To Specific Coin Trade Spot From Markets Page    ${base_coin}    ${quote_coin}
+
+Test Teardown
+    Run Keyword If Test Failed    Capture Page Screenshot
