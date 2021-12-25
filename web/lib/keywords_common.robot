@@ -10,7 +10,7 @@ Navigate To Specific Coin Trade Spot From Markets Page
     Element Text Should Be    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_INSTRUMENT_NAME_BASE}    ${base_coin}
     Element Text Should Be    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_INSTRUMENT_NAME_QUOTE}    /${quote_coin}
     Click Specific Element    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_TRADE_BUTTON}
-    Wait Until Element Is Visible    ${TRADE_SPOT_SYMBOL_INFO_ITEM_LAST_PRICE_TEXT}
+    Wait Until Keyword Succeeds    10s    1s    Check The Defaut Price Is Not Empty
 
 Open Default Browser
     [Documentation]    Open default browser 

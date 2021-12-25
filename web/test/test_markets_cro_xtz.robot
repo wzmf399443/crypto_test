@@ -27,6 +27,13 @@ Check the defaut tab is buy and could be switched in trade form
     Click Specific Element    ${TRADE_SPOT_TRADE_FORM_BUTTON_TAB_SELL}
     Verify Buy And Sell Tab Is Worked In Trade Form    Sell    ${base_coin}    ${quote_coin}
 
+Check input of trade block limit is expected in trade form
+    [Template]    Check The Input And Auto Fill In Limit Is Worked
+    ${20}
+    ${2.5}
+    total=${30}
+    total=${20.77}
+    
 *** Keywords ***
 Suite Setup
     Open Default Browser
@@ -42,3 +49,22 @@ Check The Element And The Text Is Expected
     [Arguments]    ${location}    ${text}
     Wait Until Element Is Visible    ${location}
     Element Text Should Be    ${location}    ${text}
+
+Check The Input And Auto Fill In Limit Is Worked
+    [Arguments]    ${amount}=${None}    ${total}=${None}
+    Click Specific Element    ${TRADE_SPOT_TRADE_FORM_ORDER_TYPE_LIMIT}
+    Element Attribute Value Should Be    ${TRADE_SPOT_TRADE_FORM_ORDER_TYPE_LIMIT}    class    e-tabs__nav-item active
+    ${price} =    Get Value    (${TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT})[1]/input
+    IF    '${amount}' != '${None}'
+        Clean And Input The Text    (${TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT})[2]/input    ${amount}
+        ${total_text} =    Get Value    (${TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT})[3]/input
+        ${expected_total} =    Evaluate    f"{float(${price}) * ${amount}:.4f}"
+        Capture Page Screenshot
+        Should Be Equal As Strings    ${total_text}    ${expected_total}[:-1]
+    ELSE IF    '${total}' != '${None}'
+        Clean And Input The Text    (${TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT})[3]/input    ${total}
+        ${amount_text} =    Get Value    (${TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT})[2]/input
+        ${expected_amount} =    Evaluate    f"{${total} / float(${price}):.3f}"
+        Capture Page Screenshot
+        Should Be Equal As Strings    ${amount_text}    ${expected_amount}[:-1]
+    END
