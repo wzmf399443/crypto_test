@@ -3,8 +3,19 @@ Go To Markets Page
     Go To    https://crypto.com/exchange/markets
     Wait Until Element Is Visible    ${MARKETS_PAGE_MARKET_TITLE_TEXT}
 
+Navigate To Specific Coin Trade Spot From Markets Page
+    [Arguments]    ${base_coin}    ${quote_coin}    
+    Click Specific Element    ${MARKETS_PAGE_MARKET_TRADE_LIST_${quote_coin}_TITLE_TEXT}
+    Clean And Input The Text    ${MARKETS_PAGE_MARKET_TRADE_LIST_SEARCH_INPUT}    ${base_coin}
+    Element Text Should Be    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_INSTRUMENT_NAME_BASE}    ${base_coin}
+    Element Text Should Be    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_INSTRUMENT_NAME_QUOTE}    /${quote_coin}
+    Click Specific Element    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_TRADE_BUTTON}
+    Wait Until Element Is Visible    ${TRADE_SPOT_SYMBOL_INFO_ITEM_LAST_PRICE_TEXT}
+
 Open Default Browser
-    [Documentation]    Open default browser
+    [Documentation]    Open default browser 
+    ...                if ${BROWSER_PORT} is true, will use docker browser. 
+    ...                if not, will use local browser driver
     [Arguments]    ${browser_url}=https://crypto.com/exchange/    ${browser_name}=chrome
     Run Keyword IF    '${BROWSER_PORT}'=='None'    Open Local Browser    ${browserURL}    ${browserName}
     ...    ELSE    Open Docker Browser    ${browserURL}    ${browserName}

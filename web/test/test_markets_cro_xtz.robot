@@ -9,6 +9,8 @@ Test Setup    Test Setup
 Test Timeout    ${TIMEOUT}
 
 *** Variables ***
+${base_coin}    XTZ
+${quote_coin}    CRO
 
 *** Test Cases ***
 Check the text and the elements is expected in symbol info
@@ -19,6 +21,12 @@ Check the text and the elements is expected in symbol info
     ${TRADE_SPOT_SYMBOL_INFO_TITLE_TEXT_LOW}    Low
     ${TRADE_SPOT_SYMBOL_INFO_TITLE_TEXT_24H}    24H Vol
 
+Check the defaut tab is buy and could be switched in trade form
+    Element Attribute Value Should Be    ${TRADE_SPOT_TRADE_FORM_BUTTON_TAB_BUY}    class    button-tab active
+    Verify Buy And Sell Tab Is Worked In Trade Form    Buy    ${base_coin}    ${quote_coin}
+    Click Specific Element    ${TRADE_SPOT_TRADE_FORM_BUTTON_TAB_SELL}
+    Verify Buy And Sell Tab Is Worked In Trade Form    Sell    ${base_coin}    ${quote_coin}
+
 *** Keywords ***
 Suite Setup
     Open Default Browser
@@ -28,12 +36,7 @@ Suite Teardown
 
 Test Setup
     Go To Markets Page
-    Click Specific Element    ${MARKETS_PAGE_MARKET_TRADE_LIST_CRO_TITLE_TEXT}
-    Clean And Input The Text    ${MARKETS_PAGE_MARKET_TRADE_LIST_SEARCH_INPUT}    xtz
-    Element Text Should Be    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_INSTRUMENT_NAME_BASE}    XTZ
-    Element Text Should Be    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_INSTRUMENT_NAME_QUOTE}    /CRO
-    Click Specific Element    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_TRADE_BUTTON}
-    Wait Until Element Is Visible    ${TRADE_SPOT_SYMBOL_INFO_ITEM_LAST_PRICE_TEXT}
+    Navigate To Specific Coin Trade Spot From Markets Page    ${base_coin}    ${quote_coin}
 
 Check The Element And The Text Is Expected
     [Arguments]    ${location}    ${text}
