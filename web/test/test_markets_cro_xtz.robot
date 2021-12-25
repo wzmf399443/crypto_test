@@ -67,6 +67,16 @@ Check submit button will direct to login page when user not login
     Title Should Be    Crypto.com OAuth
     Location Should Be    https://auth.crypto.com/users/sign_in
 
+Check the favorite button Is Worked
+    Enable Or Disable Favorite Button    ${true}
+    Go To Markets Page
+    Scroll Element Into View    ${MARKETS_PAGE_MARKET_TRADE_LIST_FAVORITES_TITLE_TEXT}
+    Click Specific Element    ${MARKETS_PAGE_MARKET_TRADE_LIST_FAVORITES_TITLE_TEXT}
+    Clean And Input The Text    ${MARKETS_PAGE_MARKET_TRADE_LIST_SEARCH_INPUT}    ${base_coin}
+    Element Text Should Be    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_INSTRUMENT_NAME_BASE}    ${base_coin}
+    Element Text Should Be    ${MARKETS_PAGE_MARKET_TRADE_LIST_FIRST_ROW_INSTRUMENT_NAME_QUOTE}    /${quote_coin}
+    [Teardown]    Test Teardown For Un-favorite the item
+    
 *** Keywords ***
 Check The Element And The Text Is Expected
     [Arguments]    ${location}    ${text}
@@ -127,3 +137,9 @@ Test Setup
 
 Test Teardown
     Run Keyword If Test Failed    Capture Page Screenshot
+
+Test Teardown For Un-favorite the item
+    Run Keyword If Test Failed    Capture Page Screenshot
+    Go To Markets Page
+    Navigate To Specific Coin Trade Spot From Markets Page    ${base_coin}    ${quote_coin}
+    Enable Or Disable Favorite Button    ${false}
