@@ -14,3 +14,10 @@ TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK = '//*[@id="app"]//div[@class="trade-b
 TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_TYPE = f'{TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK}//span[@class="trade-type"]'
 TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_TYPE_AMOUNT = f'{TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK}//span[@class="amount"]'
 TRADE_SPOT_TRADE_FORM_TRADE_BLOCK_TRADE_INPUT = f'{TRADE_SPOT_TRADE_FORM_DISPLAY_TRADE_BLOCK}//div[@class="trade-input"]/div[@class="input-item"]'
+
+# Order Book
+TRADE_SPOT_ORDER_BOOK_TITLE_TEXT = '//*[@id="app"]//div[@class="order-book"]//div[@class="title"]'
+TRADE_SPOT_ORDER_BOOK_ASK_LIST_CURRENT_PRICE = '//*[@id="app"]//div[@class="order-book"]//div[@class="current-price"]/span'
+TRADE_SPOT_ORDER_BOOK_ASK_LIST = '//*[@id="app"]//div[@class="order-book"]//div[@class="list-content" and .//div[contains(@class,"color-ask-price")]]'
+TRADE_SPOT_ORDER_BOOK_BUY_LIST = '//*[@id="app"]//div[@class="order-book"]//div[@class="list-content" and .//div[contains(@class,"color-buy-price")]]'
+TRADE_SPOT_ORDER_BOOK_ASK_LIST_PRICE_TEXT = f'{TRADE_SPOT_ORDER_BOOK_ASK_LIST}//div[@class="price color-ask-price"]'
