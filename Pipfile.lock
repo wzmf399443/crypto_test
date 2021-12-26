@@ -1,11 +1,16 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3e70763da3018d03c5e8acfa960d8479769613e50476010b5ed7b3fbbd70f2a8"
+            "sha256": "a54b318c20b24757d5cfa638672263872bf3b97fadb01aaf40895a3797445c2d"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.9"
+            "jsonschema": "*",
+            "python-dotenv": "*",
+            "python_version": "3.9",
+            "requests": "*",
+            "robotframework": ">4.0.0",
+            "robotframework-seleniumlibrary": ">5.0.0"
         },
         "sources": [
             {
