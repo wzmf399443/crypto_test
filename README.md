@@ -11,7 +11,7 @@ It's a simple demo for web UI testing and app API testing
 
 1. Install Docker Engine
 
-   - `https://docs.docker.com/engine/install/`
+   - <https://docs.docker.com/engine/install/>
 
 2. Install  pipenv
 
@@ -36,7 +36,7 @@ It's a simple demo for web UI testing and app API testing
 
 4. Run the docker container
 
-    Using Docker images for the Selenium Grid Server, FYI: `https://github.com/SeleniumHQ/docker-selenium`
+    Using Docker images for the Selenium Grid Server, FYI: <https://github.com/SeleniumHQ/docker-selenium>
 
    - For running the Selenium Grid Server by docker
 
