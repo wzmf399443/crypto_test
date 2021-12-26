@@ -2,13 +2,18 @@
 
 It's a simple demo for web UI testing and app API testing
 
+- [crypto_test](#crypto_test)
+  - [Setup the environment](#setup-the-environment)
+  - [Excuting the auto test](#excuting-the-auto-test)
+  - [Test Suite](#test-suite)
+
 ## Setup the environment
 
 1. Install Docker Engine
 
    - `https://docs.docker.com/engine/install/`
 
-2. ### Install  pipenv
+2. Install  pipenv
 
    - Brew
 
