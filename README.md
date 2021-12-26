@@ -44,7 +44,7 @@ It's a simple demo for web UI testing and app API testing
      $ docker run -d -p 4444:4444 --shm-size="2g" selenium/standalone-chrome:4.1.1-20211217
      ```
 
-   - For using Mac M1 Chip
+   - For using Mac M1 Chip. FYI: <https://github.com/sj26/docker-selenium>
 
        ```bash
        $ docker run -d -p 4444:4444 -v /dev/shm:/dev/shm seleniarm/standalone-chromium
