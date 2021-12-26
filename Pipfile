@@ -4,15 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-
-[dev-packages]
-autopep8 = "*"
-
-[requires]
-python_version = "3.9"
 python-dotenv = "*"
 robotframework-seleniumlibrary = ">5.0.0"
 robotframework = ">4.0.0"
 requests = "*"
 jsonschema = "*"
 python-dateutil = "*"
+
+[dev-packages]
+autopep8 = "*"
+
+[requires]
+python_version = "3.9"
