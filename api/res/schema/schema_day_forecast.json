@@ -1,0 +1,73 @@
+{
+    "9_day_forecast": {
+        "type": "object",
+        "properties": {
+            "bulletin_datetime": {
+                "type": "string"
+            },
+            "general_situation": {
+                "type": "string"
+            },
+            "forecast_detail": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "forecast_date": {
+                            "type": "string"
+                        },
+                        "forecast_day_of_week": {
+                            "type": "integer"
+                        },
+                        "wind_info": {
+                            "type": "string"
+                        },
+                        "wx_desc": {
+                            "type": "string"
+                        },
+                        "max_temp": {
+                            "type": "integer"
+                        },
+                        "min_temp": {
+                            "type": "integer"
+                        },
+                        "max_rh": {
+                            "type": "integer"
+                        },
+                        "min_rh": {
+                            "type": "integer"
+                        },
+                        "wx_icon": {
+                            "type": "string"
+                        },
+                        "psr": {
+                            "type": "string"
+                        },
+                        "psr_id": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "forecast_date",
+                        "forecast_day_of_week",
+                        "wind_info",
+                        "wx_desc",
+                        "max_temp",
+                        "min_temp",
+                        "max_rh",
+                        "min_rh",
+                        "wx_icon",
+                        "psr",
+                        "psr_id"
+                    ]
+                }
+            }
+        },
+        "required": [
+            "bulletin_datetime",
+            "general_situation",
+            "forecast_detail"
+        ]
+    }
+}
